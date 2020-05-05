@@ -34,10 +34,11 @@ namespace ExceptionHandling
 
             int product = GetProduct(sumArray, sum);
 
-            //GetQuotient();
+            decimal quotient = GetQuotient(product);
 
             Console.WriteLine("The sum of the array is {0}", sum);
             Console.WriteLine("The product of the numbers you did is {0}", product);
+            //Console.WriteLine("{0} / {1} = {2}", product, dividend, quotient);
         }
 
         public static int[] Populate(int[] userEntry)
@@ -98,9 +99,26 @@ namespace ExceptionHandling
             return product;
         }
 
-        //static double GetQuotient(int);
-        //{
+        static decimal GetQuotient(int product)
+        {
         
-        //}
+            int dividend = 0;
+            
+            try
+            {
+                Console.WriteLine("Please enter a number to divide your product {0} from above by.", product);
+                int userEntryDividend = int.Parse(Console.ReadLine());
+            }
+            catch (DivideByZeroException dbze)
+            {
+                if (dividend == 0)
+                {
+                    Console.WriteLine("Bad. No.", dbze.Message);
+                }
+            }
+            decimal quotient = product / dividend;
+            return quotient;
+
+        }
     }
 }
